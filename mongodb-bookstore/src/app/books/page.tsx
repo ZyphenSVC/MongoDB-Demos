@@ -1,22 +1,32 @@
-import BookCard from "@/components/BookCard";
+import BooksSearch from "@/components/BookSearch";
+
+type AuthorSummary = {
+    author_id: string;
+    name: string;
+};
+
+type Publisher = {
+    publisher_id: string;
+    name: string;
+};
 
 type Book = {
     sku: string;
     title: string;
     format: "printed" | "ebook" | "audiobook";
-    author: {
-        author_id: string;
-        name: string;
-    }[];
-    publisher?: {
-        publisher_id: string;
-        name: string;
-    };
+    author: AuthorSummary[];
+    publisher?: Publisher;
     genre?: string[];
     language?: string;
     price?: number;
     summary?: string;
     average_rating?: number;
+    release_date?: string;
+    pages?: number;
+    stock_level?: number;
+    delivery_time_days?: number;
+    duration_minutes?: number;
+    narrators?: string[];
 };
 
 async function getBooks(): Promise<Book[]> {
@@ -36,20 +46,5 @@ async function getBooks(): Promise<Book[]> {
 
 export default async function BooksPage() {
     const books = await getBooks();
-
-    return (
-        <main style={{ padding: "2rem" }}>
-            <h1>Books</h1>
-
-            {books.length === 0 ? (
-                <p>No books found.</p>
-            ) : (
-                <div>
-                    {books.map((book) => (
-                        <BookCard key={book.sku} book={book} />
-                    ))}
-                </div>
-            )}
-        </main>
-    );
+    return <BooksSearch books={books} />;
 }
