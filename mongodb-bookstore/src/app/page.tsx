@@ -31,6 +31,7 @@ export default function Home() {
 
             const res = await fetch("/api/users", {
                 method: "GET",
+                cache: "no-store",
             });
 
             if (!res.ok) {
