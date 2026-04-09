@@ -1,4 +1,5 @@
-import BooksSearch from "@/components/BookSearch";
+import BookCard from "@/components/BookCard";
+import SearchBar from "@/components/SearchBar";
 
 type AuthorSummary = {
     author_id: string;
@@ -29,11 +30,15 @@ type Book = {
     narrators?: string[];
 };
 
-async function getBooks(): Promise<Book[]> {
+async function getBooks(query: string): Promise<Book[]> {
     const baseUrl =
         process.env.NEXT_PUBLIC_API_DOMAIN || "http://localhost:3000/api";
 
-    const res = await fetch(`${baseUrl}/books`, {
+    const url = query
+        ? `${baseUrl}/books?q=${encodeURIComponent(query)}`
+        : `${baseUrl}/books`;
+
+    const res = await fetch(url, {
         cache: "no-store",
     });
 
@@ -44,7 +49,41 @@ async function getBooks(): Promise<Book[]> {
     return res.json();
 }
 
-export default async function BooksPage() {
-    const books = await getBooks();
-    return <BooksSearch books={books} />;
+export default async function BooksPage({
+                                            searchParams,
+                                        }: {
+    searchParams: Promise<{ q?: string }>;
+}) {
+    const params = await searchParams;
+    const query = params.q?.trim() || "";
+
+    const books = await getBooks(query);
+
+    return (
+        <main style={{ padding: "2rem" }}>
+            <h1>Books</h1>
+
+            <SearchBar defaultValue={query} />
+
+            {query && (
+                <p>
+                    Search results for: <strong>{query}</strong>
+                </p>
+            )}
+
+            <p>
+                Showing {books.length} book{books.length === 1 ? "" : "s"}
+            </p>
+
+            {books.length === 0 ? (
+                <p>No books matched your search.</p>
+            ) : (
+                <div>
+                    {books.map((book) => (
+                        <BookCard key={book.sku} book={book} />
+                    ))}
+                </div>
+            )}
+        </main>
+    );
 }

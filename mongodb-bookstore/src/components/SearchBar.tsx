@@ -1,29 +1,25 @@
-"use client";
-
 type SearchBarProps = {
-    value: string;
-    onChange: (value: string) => void;
-    placeholder?: string;
+    defaultValue?: string;
 };
 
-export default function SearchBar({
-                                      value,
-                                      onChange,
-                                      placeholder = "Search books...",
-                                  }: SearchBarProps) {
+export default function SearchBar({ defaultValue = "" }: SearchBarProps) {
     return (
-        <div style={{ marginBottom: "1rem" }}>
-    <input
-        type="text"
-    value={value}
-    placeholder={placeholder}
-    onChange={(e) => onChange(e.target.value)}
-    style={{
-        width: "100%",
-            maxWidth: "400px",
-            padding: "0.5rem",
-    }}
-    />
-    </div>
-);
+        <form action="/books" method="GET" style={{ marginBottom: "1rem" }}>
+            <input
+                type="text"
+                name="q"
+                defaultValue={defaultValue}
+                placeholder="Search books by title, author, genre, SKU..."
+                style={{
+                    width: "100%",
+                    maxWidth: "500px",
+                    padding: "0.75rem",
+                    border: "1px solid gray",
+                }}
+            />
+            <div style={{ marginTop: "0.75rem" }}>
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    );
 }

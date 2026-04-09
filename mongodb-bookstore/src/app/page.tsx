@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, ChangeEvent } from "react";
+import Link from "next/link";
 
 type User = {
   _id: string;
@@ -194,6 +195,9 @@ export default function Home() {
                     </div>
                 ))}
             </div>
+            <Link href="/books" style={{ marginLeft: "1rem" }}>
+                Books Page
+            </Link>
         </main>
     );
 }

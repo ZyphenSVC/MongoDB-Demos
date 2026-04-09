@@ -27,27 +27,206 @@ AFTER DELETE
 bookstore> db.users.findOne()
 null
 
-bookstore> db.books.findOne()
+bookstore> db.books.find().pretty()
+[
+  {
+    _id: ObjectId('69d776fbc5dc241d5f416424'),
+    sku: 'BK-1001',
+    title: 'The Stars Beyond Orion',
+    format: 'printed',
+    author: [ { author_id: 'AUTH-001', name: 'Elena Hart' } ],
+    publisher: { publisher_id: 'PUB-001', name: 'Nova House' },
+    genre: [ 'Science Fiction', 'Adventure' ],
+    language: 'English',
+    price: 24.99,
+    summary: 'A deep-space expedition uncovers a signal from beyond known space.',
+    average_rating: 4.6,
+    release_date: ISODate('2023-09-15T00:00:00.000Z'),
+    pages: 412,
+    stock_level: 38,
+    delivery_time_days: 3,
+    narrators: [],
+    __v: 0,
+    createdAt: ISODate('2026-04-09T09:52:59.765Z'),
+    updatedAt: ISODate('2026-04-09T09:52:59.765Z')
+  },
+  {
+    _id: ObjectId('69d776fbc5dc241d5f416425'),
+    sku: 'BK-1002',
+    title: 'The Last Ember Crown',
+    ...
+  },
+  {
+    _id: ObjectId('69d776fbc5dc241d5f416426'),
+    sku: 'BK-1003',
+    title: 'Quiet Systems',
+    ...
+  },
+  {
+    _id: ObjectId('69d776fbc5dc241d5f416427'),
+    sku: 'BK-1004',
+    title: 'Patterns of Proof',
+    ...
+  },
+  {
+    _id: ObjectId('69d776fbc5dc241d5f416428'),
+    sku: 'BK-1005',
+    title: 'The Atlas of Rain',
+    format: 'printed',
+    author: [
+      { author_id: 'AUTH-005', name: 'Isla Moreno' },
+      { author_id: 'AUTH-006', name: 'Jon Mercer' }
+    ],
+    publisher: { publisher_id: 'PUB-005', name: 'Blue Current Books' },
+    genre: [ 'Literary Fiction', 'Drama' ],
+    language: 'English',
+    price: 21.75,
+    summary: 'Two strangers trace a vanished cartographer through cities shaped by weather.',
+    average_rating: 4.4,
+    release_date: ISODate('2020-11-03T00:00:00.000Z'),
+    pages: 328,
+    stock_level: 22,
+    delivery_time_days: 4,
+    narrators: [],
+    __v: 0,
+    createdAt: ISODate('2026-04-09T09:52:59.766Z'),
+    updatedAt: ISODate('2026-04-09T09:52:59.766Z')
+  },
+  {
+    _id: ObjectId('69d776fbc5dc241d5f416429'),
+    sku: 'BK-1006',
+    title: 'Listening to Saturn',
+    ...
+  }
+]
+
+bookstore> db.books.find(
+|   {},
+|   { _id: 0, sku: 1, title: 1, format: 1, author: 1, publisher: 1, price: 1 }
+| ).pretty()
+[
+  {
+    sku: 'BK-1001',
+    title: 'The Stars Beyond Orion',
+    format: 'printed',
+    author: [ { author_id: 'AUTH-001', name: 'Elena Hart' } ],
+    publisher: { publisher_id: 'PUB-001', name: 'Nova House' },
+    price: 24.99
+  },
+  {
+    sku: 'BK-1002',
+    title: 'The Last Ember Crown',
+    format: 'ebook',
+    author: [ { author_id: 'AUTH-002', name: 'Marcus Vale' } ],
+    publisher: { publisher_id: 'PUB-002', name: 'Ashgrove Press' },
+    price: 12.99
+  },
+  {
+    sku: 'BK-1003',
+    title: 'Quiet Systems',
+    format: 'audiobook',
+    author: [ { author_id: 'AUTH-003', name: 'Naomi Pierce' } ],
+    publisher: { publisher_id: 'PUB-003', name: 'Signal Ridge' },
+    price: 18.5
+  },
+  {
+    sku: 'BK-1004',
+    title: 'Patterns of Proof',
+    format: 'printed',
+    author: [ { author_id: 'AUTH-004', name: 'Daniel Rowan' } ],
+    publisher: { publisher_id: 'PUB-004', name: 'Summit Academic' },
+    price: 31
+  },
+  {
+    sku: 'BK-1005',
+    title: 'The Atlas of Rain',
+    format: 'printed',
+    author: [
+      { author_id: 'AUTH-005', name: 'Isla Moreno' },
+      { author_id: 'AUTH-006', name: 'Jon Mercer' }
+    ],
+    publisher: { publisher_id: 'PUB-005', name: 'Blue Current Books' },
+    price: 21.75
+  },
+  {
+    sku: 'BK-1006',
+    title: 'Listening to Saturn',
+    format: 'audiobook',
+    author: [ { author_id: 'AUTH-001', name: 'Elena Hart' } ],
+    publisher: { publisher_id: 'PUB-001', name: 'Nova House' },
+    price: 16.99
+  }
+]
+
+bookstore> db.books.findOne({ sku: "BK-1001" })
 {
-  _id: ObjectId('69d773f5f150907c630bfd5d'),
-  sku: 'fdsfds',
-  title: 'fhdbsfjhbds',
+  _id: ObjectId('69d776fbc5dc241d5f416424'),
+  sku: 'BK-1001',
+  title: 'The Stars Beyond Orion',
   format: 'printed',
-  author: [ { author_id: 'fjhsdfuihiua', name: 'fisdfisdif' } ],
-  publisher: { publisher_id: 'fiudhfiuhdui', name: 'fiudshfiuh' },
-  genre: [ 'fiudhsfiuhsf' ],
-  language: 'fuhdsfiuhdsu',
-  price: null,
-  average_rating: 0,
-  pages: null,
-  stock_level: null,
-  delivery_time_days: null,
-  duration_minutes: null,
-  narrators: [ 'fiuhqiuhf' ],
-  createdAt: ISODate('2026-04-09T09:13:05.207Z'),
-  updatedAt: ISODate('2026-04-09T09:13:05.207Z'),
-  __v: 0
+  author: [ { author_id: 'AUTH-001', name: 'Elena Hart' } ],
+  publisher: { publisher_id: 'PUB-001', name: 'Nova House' },
+  genre: [ 'Science Fiction', 'Adventure' ],
+  language: 'English',
+  price: 24.99,
+  summary: 'A deep-space expedition uncovers a signal from beyond known space.',
+  average_rating: 4.6,
+  release_date: ISODate('2023-09-15T00:00:00.000Z'),
+  pages: 412,
+  stock_level: 38,
+  delivery_time_days: 3,
+  narrators: [],
+  __v: 0,
+  createdAt: ISODate('2026-04-09T09:52:59.765Z'),
+  updatedAt: ISODate('2026-04-09T09:52:59.765Z')
 }
+
+bookstore> db.books.find(
+|   {},
+|   { _id: 0, title: 1, author: 1 }
+| ).pretty()
+[
+  {
+    title: 'The Stars Beyond Orion',
+    author: [ { author_id: 'AUTH-001', name: 'Elena Hart' } ]
+  },
+  {
+    title: 'The Last Ember Crown',
+    author: [ { author_id: 'AUTH-002', name: 'Marcus Vale' } ]
+  },
+  {
+    title: 'Quiet Systems',
+    author: [ { author_id: 'AUTH-003', name: 'Naomi Pierce' } ]
+  },
+  {
+    title: 'Patterns of Proof',
+    author: [ { author_id: 'AUTH-004', name: 'Daniel Rowan' } ]
+  },
+  {
+    title: 'The Atlas of Rain',
+    author: [
+      { author_id: 'AUTH-005', name: 'Isla Moreno' },
+      { author_id: 'AUTH-006', name: 'Jon Mercer' }
+    ]
+  },
+  {
+    title: 'Listening to Saturn',
+    author: [ { author_id: 'AUTH-001', name: 'Elena Hart' } ]
+  }
+]
+
+bookstore> db.books.find({ title: /orion/i }, { _id: 0, sku: 1, title: 1 }).pretty()
+[ { sku: 'BK-1001', title: 'The Stars Beyond Orion' } ]
+
+db.books.find(
+  { "author.name": /elena/i },
+  { _id: 0, title: 1, author: 1 }
+).pretty()
+
+db.books.updateOne(
+  { sku: "BK-1001" },
+  { $set: { price: 29.99 } }
+)
 ```
 
 ## Disclosure
