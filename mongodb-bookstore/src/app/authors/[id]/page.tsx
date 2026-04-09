@@ -27,11 +27,7 @@ async function getAuthorData(id: string): Promise<AuthorData | null> {
     return res.json();
 }
 
-export default async function AuthorPage({
-                                             params,
-                                         }: {
-    params: Promise<{ id: string }>;
-}) {
+export default async function AuthorPage({params}: { params: Promise<{ id: string }>; }) {
     const { id } = await params;
     const data = await getAuthorData(id);
 

@@ -1,5 +1,6 @@
 import connectMongoDB from "@/../mongo/mongodb";
 import User from "@/../mongo/models/User";
+import Book from "@/../mongo/models/Book";
 
 export type CreateUserInput = {
     userId: string;
@@ -75,4 +76,36 @@ export async function deleteUserByUserId(userId: string) {
     await connectMongoDB();
 
     return User.findOneAndDelete({ userId }).lean();
+}
+
+export async function getAllBooks() {
+    await connectMongoDB();
+    return Book.find({}).sort({ createdAt: -1 }).lean();
+}
+
+export async function getBookBySku(sku: string) {
+    await connectMongoDB();
+    return Book.findOne({ sku }).lean();
+}
+
+export async function createBook(input: Record<string, unknown>) {
+    await connectMongoDB();
+    return Book.create(input);
+}
+
+export async function updateBookBySku(
+    sku: string,
+    updates: Record<string, unknown>
+) {
+    await connectMongoDB();
+    return Book.findOneAndUpdate(
+        { sku },
+        { $set: updates },
+        { new: true, runValidators: true }
+    ).lean();
+}
+
+export async function deleteBookBySku(sku: string) {
+    await connectMongoDB();
+    return Book.findOneAndDelete({ sku }).lean();
 }

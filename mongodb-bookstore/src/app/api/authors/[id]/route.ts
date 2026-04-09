@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "@/../mongo/lib/mongodb";
+import connectMongoDB from "@/../mongo/mongodb";
 import Book from "@/../mongo/models/Book";
 
 type Context = {
