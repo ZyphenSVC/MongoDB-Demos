@@ -81,8 +81,6 @@ nextjs-mongodb-bookstore/
 │               └── route.ts
 ├── components/
 │   ├── BookCard.tsx
-│   ├── ReviewList.tsx
-│   ├── ReviewForm.tsx
 │   └── SearchBar.tsx
 ├── lib/
 │   ├── mongodb.ts
