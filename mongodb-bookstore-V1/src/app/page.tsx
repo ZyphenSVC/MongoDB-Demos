@@ -37,10 +37,10 @@ export default function Home() {
 
             if (!res.ok) {
                 throw new Error("Failed to fetch users.");
+            } else {
+                const data = await res.json();
+                setUsers(data);
             }
-
-            const data = await res.json();
-            setUsers(data);
         } catch (err) {
             setError(err instanceof Error ? err.message : "Something went wrong.");
         } finally {
@@ -70,17 +70,16 @@ export default function Home() {
 
             if (!res.ok) {
                 throw new Error(data.error || "Failed to create user.");
+            } else {
+                setForm({
+                    userId: "",
+                    name: "",
+                    email: "",
+                    phoneNumber: "",
+                    deliveryAddress: "",
+                });
+                await fetchUsers();
             }
-
-            setForm({
-                userId: "",
-                name: "",
-                email: "",
-                phoneNumber: "",
-                deliveryAddress: "",
-            });
-
-            await fetchUsers();
         } catch (err) {
             setError(err instanceof Error ? err.message : "Something went wrong.");
         }
@@ -98,9 +97,9 @@ export default function Home() {
 
             if (!res.ok) {
                 throw new Error(data.error || "Failed to delete user.");
+            } else {
+                await fetchUsers();
             }
-
-            await fetchUsers();
         } catch (err) {
             setError(err instanceof Error ? err.message : "Something went wrong.");
         }

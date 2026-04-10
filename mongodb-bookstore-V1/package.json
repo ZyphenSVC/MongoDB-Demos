@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "fakeData": "tsx mongo/fakeData.ts"
+    "fakeData": "tsx fakeData.ts"
   },
   "dependencies": {
     "mongoose": "^9.4.1",

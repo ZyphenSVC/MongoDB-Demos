@@ -1,10 +1,12 @@
 type SearchBarProps = {
-    defaultValue?: string;
+    defaultValue?: string,
+    value?: string,
+    onChange?: void
 };
 
-export default function SearchBar({ defaultValue = "" }: SearchBarProps) {
+export default function SearchBar({defaultValue = ""}: SearchBarProps) {
     return (
-        <form action="/books" method="GET" style={{ marginBottom: "1rem" }}>
+        <form action="/books" method="GET" style={{marginBottom: "1rem"}}>
             <input
                 type="text"
                 name="q"
@@ -17,7 +19,7 @@ export default function SearchBar({ defaultValue = "" }: SearchBarProps) {
                     border: "1px solid gray",
                 }}
             />
-            <div style={{ marginTop: "0.75rem" }}>
+            <div style={{marginTop: "0.75rem"}}>
                 <button type="submit">Search</button>
             </div>
         </form>

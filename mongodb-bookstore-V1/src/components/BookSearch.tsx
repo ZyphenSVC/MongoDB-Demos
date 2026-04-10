@@ -71,7 +71,7 @@ export default function BooksClient({ books }: { books: Book[] }) {
         <main style={{ padding: "2rem" }}>
             <h1>Books</h1>
 
-            <SearchBar value={query} onChange={setQuery} />
+            <SearchBar defaultValue={query} onChange={setQuery(query)} />
 
             <p>
                 Showing {filteredBooks.length} of {books.length} books
@@ -89,3 +89,5 @@ export default function BooksClient({ books }: { books: Book[] }) {
         </main>
     );
 }
+
+

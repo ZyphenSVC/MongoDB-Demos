@@ -20,3 +20,4 @@ Across the projects in this repository, I am focusing on the following ideas:
 - learning how to design collections for both read-heavy and write-heavy workloads
 - exploring indexing and performance optimization
 - developing repeatable local development workflows with MongoDB
+
