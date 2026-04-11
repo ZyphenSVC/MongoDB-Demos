@@ -2,20 +2,6 @@
 
 This project MongoDB University coursework.
 
-## What I Focused On
-- Workload-driven schema design
-- Embedding vs referencing tradeoffs
-- Handling high-cardinality relationships
-- Schema validation for production systems
-
-## Applied Example
-I implemented a bookstore data model where:
-- Authors are embedded inside books (read optimization)
-- Reviews are stored separately and referenced (write scalability)
-
-## Key Insight
-MongoDB schema design is not about normalization — it is about **access patterns and workload efficiency**.
-
 ## Attribution
 These notes are based on MongoDB University material, rewritten and extended with my own examples and design decisions.
 
